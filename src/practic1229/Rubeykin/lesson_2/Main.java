@@ -21,6 +21,29 @@ public class Main {
         return false;
     }
 
+    // Метод к задаче №7
+    public static int[] shiftArray (int[] arr, int n){
+        if (n < 0) {
+            for (int a = 0; a != n; a--) {
+                int number = arr[0];
+                for (int i = 0; i < (arr.length - 1); i++) {
+                    arr[i] = arr[i + 1];
+                }
+                arr[(arr.length - 1)] = number;
+            }
+        }
+        if (n > 0){
+            for (int a = 0; a != n; a++) {
+                int number = arr[(arr.length - 1)];
+                for (int i = (arr.length - 1); i > 0; i--) {
+                    arr[i] = arr[i - 1];
+                }
+                arr[0] = number;
+            }
+        }
+        return arr;
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Задача №1");
@@ -69,6 +92,10 @@ public class Main {
 
         System.out.println("Задача №6");
         System.out.println("Результат проверки: " + isCheckBalance(arr2));
+
+        System.out.println("Задача №7");
+        System.out.println(Arrays.toString(table));
+        System.out.println(Arrays.toString(shiftArray(table,-2)));
     }
 
 }
