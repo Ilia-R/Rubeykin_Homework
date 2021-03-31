@@ -25,7 +25,6 @@ public class Main {
         outputArrayOfWords(words);
 
         int numberOfRandomeWord = random.nextInt(words.length);
-        System.out.println(words[numberOfRandomeWord]);
         do {
             System.out.print("Enter your word: ");
             userWord = sc.next();
