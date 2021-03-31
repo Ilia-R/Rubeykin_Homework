@@ -38,7 +38,7 @@ public class Main {
                     } else arrayOfletter[i] = '#';
                 }
                 System.out.println(Arrays.toString(arrayOfletter));
-            }
+            } else System.out.println("Поздравляю с победой!");
         } while (!words[numberOfRandomeWord].equals(userWord));
 
         sc.close();
