@@ -10,7 +10,7 @@ public class Main {
     static final String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot",
             "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive",
             "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-    static   int numberOfChecks = 0;
+    static int numberOfChecks = 0;
 
     static Random random = new Random();
     static Scanner sc = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class Main {
 
         guessNumberGame();
 
-        char[] arrayOfletter = {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'};
+        char[] arrayOfletter = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'};
         System.out.println("Угадайте какое из этих слов загадал компьютер: ");
         outputArrayOfWords(words);
 
@@ -45,14 +45,14 @@ public class Main {
 
     }
 
-    public static void outputArrayOfWords (String[] arr){
-        for (int i = 0; i < arr.length; i++){
+    public static void outputArrayOfWords(String[] arr) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + ", ");
             if ((i + 1) % 5 == 0) System.out.println();
         }
     }
 
-    public static void guessNumberGame (){
+    public static void guessNumberGame() {
         boolean playFurther = true;
         while (playFurther) {
             int hiddenNumber = random.nextInt(10);
