@@ -40,21 +40,9 @@ public class Main {
         do {
             exit = 0;
             String coordinates = sc.next();
-            switch (coordinates.charAt(0)) {
-                case 'A':
-                    x = 0;
-                    exit++;
-                    break;
-                case 'B':
-                    x = 1;
-                    exit++;
-                    break;
-                case 'C':
-                    x = 2;
-                    exit++;
-                    break;
-                default:
-                    System.out.println("Вводите заглавные буквы латиницей! A, B, C.");
+            char[] wordCase = {'a', 'b', 'c'};
+            for (int i = 0; i < 3; i++) {
+                if (Character.toLowerCase(coordinates.charAt(0)) == wordCase[i]) x = i;
             }
             if (coordinates.charAt(1) == '1' || coordinates.charAt(1) == '2' || coordinates.charAt(1) == '3') {
                 y = Character.getNumericValue(coordinates.charAt(1)) - 1;
