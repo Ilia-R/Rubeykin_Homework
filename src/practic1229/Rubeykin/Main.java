@@ -1,5 +1,6 @@
 package practic1229.Rubeykin;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -8,16 +9,19 @@ public class Main {
     public static boolean End = false;
     //public static int counterMoves = 0;
     public static int[] gameField = new int[9];
-
+    public static Random random = new Random();
 
     public static void main(String[] args) {
         int a = 7 % 2;
-        System.out.println(a);
+        for (int i = 0; i < 10; i++) {
+            a = random.nextInt(2);
+            System.out.println(a);
+        }
         sc.close();
         boolean End = false;
-        do{
+/*        do{
             System.out.println("It's never ending story!!!");
-        }while (!End);
+        }while (!End);*/
     }
     public static boolean isBinaryNumber (int number){
         while(number != 0) {

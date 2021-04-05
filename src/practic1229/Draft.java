@@ -1,5 +1,6 @@
 package practic1229;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Draft {
@@ -7,8 +8,7 @@ public class Draft {
     public static final char dot_empty = '•';
     public static final char userChar = 'o';
     public static final char AIChar = 'x';
-    public static int SIZE = 3;
-    public static int coordinatesOfMove;
+    public static final String[] player = {"Сакйнет","Кожанный ублюдок"};
     public static int counter;
     public static int[] binaryNumberArr = new int[9];
     public static int[][] gameField = new int[2][9];
@@ -19,34 +19,55 @@ public class Draft {
     public static boolean End = false;
 
     public static Scanner sc = new Scanner(System.in);
+    public static Random random = new Random();
 
     public static void main(String[] args) {
-        counter = 0;
+        counter = random.nextInt(2);
         for (int i = 1; i <= 512; i++) options[i-1] = i;
         removesUnwantedNumbersFromOptions();
         zeroingBinaryArray();
         packOptionsForMove(5);
         searchForWinningCombinations();
         for (int i = 0; i < binaryNumberArr.length; i++) binaryNumberArr[i] = 0;
-        int i1 = 0;
+        drawsAField();
         do {
-            getCoordinates(counter % 2);
-            isFastMove(counter % 2);
+            int k = 0;
+            if (counter % 2 == 1) getCoordinates(counter % 2);
+            if (counter % 2 == 0){
+                if (isFastMove(1));
+                else if (isFastMove(0));
+                else {
+                    if (gameField[1][4] != 1 && gameField[0][4] != 1) gameField[0][4] = 1;
+                    else if (gameField[1][0] != 1 && gameField[0][0] != 1) gameField[0][0] = 1;
+                    else if (gameField[1][2] != 1 && gameField[0][2] != 1) gameField[0][2] = 1;
+                    else if (gameField[1][6] != 1 && gameField[0][6] != 1) gameField[0][6] = 1;
+                    else if (gameField[1][8] != 1 && gameField[0][8] != 1) gameField[0][8] = 1;
+                    else if (gameField[1][1] != 1 && gameField[0][1] != 1) gameField[0][1] = 1;
+                    else if (gameField[1][3] != 1 && gameField[0][3] != 1) gameField[0][3] = 1;
+                    else if (gameField[1][5] != 1 && gameField[0][5] != 1) gameField[0][5] = 1;
+                    else if (gameField[1][7] != 1 && gameField[0][7] != 1) gameField[0][7] = 1;
+                }
+            }
+            if (isWeHaveAWinner(counter % 2)) { drawsAField(); break;}
             drawsAField();
-            isWeHaveAWinner(counter % 2);
+            for (int i = 0; i < 9; i++){
+                k = k + gameField[0][i] + gameField [1][i];
+            }
+            if (k == 9) break;
             counter++;
         } while (!End);
-        System.out.println("Игра закончена победила дружба");
-        for (int i = 0; i < statistic.length; i++) {
+        if (isWeHaveAWinner(counter % 2)) System.out.println("Игра закончена победил " + player[counter % 2]);
+        else System.out.println("I'll be back");
+        /*for (int i = 0; i < statistic.length; i++) {
             System.out.print(statistic[i] + " ");
             if ((i + 1) % 3 == 0) System.out.println();
-        }
+        }*/
         sc.close();
     }
 
     public static void getCoordinates(int a){
         int b = 9;
-        System.out.print("Сейчас ходит: " + (counter % 2) +" Введите координаты a1 или b1 и т.д.(латинскими буквами): ");
+        System.out.print("Сейчас ходит: " + player[counter % 2] +". Введите координаты a1 или b1 и т.д.(латинскими буквами): ");
         String coordinates;
         do {
             coordinates = sc.nextLine();
@@ -173,66 +194,59 @@ public class Draft {
     }
     public static boolean isFastMove (int a){
         int b;
-        if (a == 1) b = 0; else b = 1;
+        if (a == 0) b = 1; else b = 0;
         if (gameField[a][0] + gameField[a][1] + gameField[a][2] == 2){
-            if (gameField[a][0] == 0) gameField[b][0] = 1;
-            if (gameField[a][1] == 0) gameField[b][1] = 1;
-            if (gameField[a][2] == 0) gameField[b][2] = 1;
-            return true;
+            if (gameField[a][0] == 0 && gameField[b][0] == 0) {gameField[0][0] = 1; return true;}
+            if (gameField[a][1] == 0 && gameField[b][1] == 0) {gameField[0][1] = 1; return true;}
+            if (gameField[a][2] == 0 && gameField[b][2] == 0) {gameField[0][2] = 1; return true;}
         }
         if (gameField[a][3] + gameField[a][4] + gameField[a][5] == 2){
-            if (gameField[a][3] == 0) gameField[b][3] = 1;
-            if (gameField[a][4] == 0) gameField[b][4] = 1;
-            if (gameField[a][5] == 0) gameField[b][5] = 1;
-            return true;
+            if (gameField[a][3] == 0 && gameField[b][3] == 0) {gameField[0][3] = 1; return true;}
+            if (gameField[a][4] == 0 && gameField[b][4] == 0) {gameField[0][4] = 1; return true;}
+            if (gameField[a][5] == 0 && gameField[b][5] == 0) {gameField[0][5] = 1; return true;}
         }
         if (gameField[a][6] + gameField[a][7] + gameField[a][8] == 2){
-            if (gameField[a][6] == 0) gameField[b][6] = 1;
-            if (gameField[a][7] == 0) gameField[b][7] = 1;
-            if (gameField[a][8] == 0) gameField[b][8] = 1;
-            return true;
+            if (gameField[a][6] == 0 && gameField[b][6] == 0) {gameField[0][6] = 1; return true;}
+            if (gameField[a][7] == 0 && gameField[b][7] == 0) {gameField[0][7] = 1; return true;}
+            if (gameField[a][8] == 0 && gameField[b][8] == 0) {gameField[0][8] = 1; return true;}
         }
         if (gameField[a][0] + gameField[a][3] + gameField[a][6] == 2){
-            if (gameField[a][0] == 0) gameField[b][0] = 1;
-            if (gameField[a][3] == 0) gameField[b][3] = 1;
-            if (gameField[a][6] == 0) gameField[b][6] = 1;
-            return true;
+            if (gameField[a][0] == 0 && gameField[b][0] == 0) {gameField[0][0] = 1; return true;}
+            if (gameField[a][3] == 0 && gameField[b][3] == 0) {gameField[0][3] = 1; return true;}
+            if (gameField[a][6] == 0 && gameField[b][6] == 0) {gameField[0][6] = 1; return true;}
         }
         if (gameField[a][1] + gameField[a][4] + gameField[a][7] == 2){
-            if (gameField[a][1] == 0) gameField[b][1] = 1;
-            if (gameField[a][4] == 0) gameField[b][4] = 1;
-            if (gameField[a][7] == 0) gameField[b][7] = 1;
-            return true;
+            if (gameField[a][1] == 0 && gameField[b][1] == 0) {gameField[0][1] = 1; return true;}
+            if (gameField[a][4] == 0 && gameField[b][4] == 0) {gameField[0][4] = 1; return true;}
+            if (gameField[a][7] == 0 && gameField[b][7] == 0) {gameField[0][7] = 1; return true;}
         }
         if (gameField[a][2] + gameField[a][5] + gameField[a][8] == 2){
-            if (gameField[a][2] == 0) gameField[b][2] = 1;
-            if (gameField[a][5] == 0) gameField[b][5] = 1;
-            if (gameField[a][8] == 0) gameField[b][8] = 1;
-            return true;
+            if (gameField[a][2] == 0 && gameField[b][2] == 0) {gameField[0][2] = 1; return true;}
+            if (gameField[a][5] == 0 && gameField[b][5] == 0) {gameField[0][5] = 1; return true;}
+            if (gameField[a][8] == 0 && gameField[b][8] == 0) {gameField[0][8] = 1; return true;}
         }
         if (gameField[a][0] + gameField[a][4] + gameField[a][8] == 2){
-            if (gameField[a][0] == 0) gameField[b][0] = 1;
-            if (gameField[a][4] == 0) gameField[b][4] = 1;
-            if (gameField[a][8] == 0) gameField[b][8] = 1;
-            return true;
+            if (gameField[a][0] == 0 && gameField[b][0] == 0) {gameField[0][0] = 1; return true;}
+            if (gameField[a][4] == 0 && gameField[b][4] == 0) {gameField[0][4] = 1; return true;}
+            if (gameField[a][8] == 0 && gameField[b][8] == 0) {gameField[0][8] = 1; return true;}
         }
         if (gameField[a][2] + gameField[a][4] + gameField[a][6] == 2){
-            if (gameField[a][2] == 0) gameField[b][2] = 1;
-            if (gameField[a][4] == 0) gameField[b][4] = 1;
-            if (gameField[a][6] == 0) gameField[b][6] = 1;
-            return true;
+            if (gameField[a][2] == 0 && gameField[b][2] == 0) {gameField[0][2] = 1; return true;}
+            if (gameField[a][4] == 0 && gameField[b][4] == 0) {gameField[0][4] = 1; return true;}
+            if (gameField[a][6] == 0 && gameField[b][6] == 0) {gameField[0][6] = 1; return true;}
         }
         return false;
     }
-    public static void isWeHaveAWinner (int a){
-        if (gameField[a][0] + gameField[a][1] + gameField[a][2] == 3) End = true;
-        if (gameField[a][3] + gameField[a][4] + gameField[a][5] == 3) End = true;
-        if (gameField[a][6] + gameField[a][7] + gameField[a][8] == 3) End = true;
-        if (gameField[a][0] + gameField[a][3] + gameField[a][6] == 3) End = true;
-        if (gameField[a][1] + gameField[a][4] + gameField[a][7] == 3) End = true;
-        if (gameField[a][2] + gameField[a][5] + gameField[a][8] == 3) End = true;
-        if (gameField[a][0] + gameField[a][4] + gameField[a][8] == 3) End = true;
-        if (gameField[a][2] + gameField[a][4] + gameField[a][6] == 3) End = true;
+    public static boolean isWeHaveAWinner (int a){
+        if (gameField[a][0] + gameField[a][1] + gameField[a][2] == 3) return true;
+        else if (gameField[a][3] + gameField[a][4] + gameField[a][5] == 3) return true;
+        else if (gameField[a][6] + gameField[a][7] + gameField[a][8] == 3) return true;
+        else if (gameField[a][0] + gameField[a][3] + gameField[a][6] == 3) return true;
+        else if (gameField[a][1] + gameField[a][4] + gameField[a][7] == 3) return true;
+        else if (gameField[a][2] + gameField[a][5] + gameField[a][8] == 3) return true;
+        else if (gameField[a][0] + gameField[a][4] + gameField[a][8] == 3) return true;
+        else if (gameField[a][2] + gameField[a][4] + gameField[a][6] == 3) return true;
+        else return false;
     }
     /*public static void logicalMove(int[] arr){
         for (int i = 0; i < )
