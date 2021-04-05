@@ -4,36 +4,29 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
-    public static int x,y;
+    //public static int x,y;
     public static boolean End = false;
-    public static int counterMoves = 0;
+    //public static int counterMoves = 0;
+    public static int[] gameField = new int[9];
 
 
     public static void main(String[] args) {
-        do {
-            step();
-            if (counterMoves == 9) End = true;
-        } while (!End);
+        int a = 7 % 2;
+        System.out.println(a);
+        sc.close();
+        boolean End = false;
+        do{
+            System.out.println("It's never ending story!!!");
+        }while (!End);
     }
-
-    public static void step(){
-        x = 4;
-        y = 4;
-        System.out.print("Ваш ход введите координаты: ");
-        do {
-            String coordinates = sc.next();
-            char[] wordCase = {'a', 'b', 'c'};
-            for (int i = 0; i < 3; i++) {
-                if (Character.toLowerCase(coordinates.charAt(0)) == wordCase[i]) x = i;
+    public static boolean isBinaryNumber (int number){
+        while(number != 0) {
+            if (number % 10 != 0 && number % 10 != 1){
+                System.out.println("False " + number % 10);
+                return false;
             }
-            if (coordinates.charAt(1) == '1' || coordinates.charAt(1) == '2' || coordinates.charAt(1) == '3')
-                y = Character.getNumericValue(coordinates.charAt(1)) - 1;
-            if ((x == 0 || x == 1 || x == 2) && (y == 0 || y == 1 || y == 2)) {
-                counterMoves++;
-                System.out.println("x= " + x + ", y= " + y + ", counterMoves= " + counterMoves);
-                break;
-            } else System.out.println("Вводите данные в формате a1, b2, c3 и т.д.");
-            if (x == 2 && y == 2) End = true;
-        } while (true);
+            number = number / 10;
+        }
+        return true;
     }
 }

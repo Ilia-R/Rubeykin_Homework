@@ -10,8 +10,9 @@ public class Main {
 
     public static int SIZE = 3;
     public static int DOTS_TO_WIN = 3;
-    public static int[][] AIField = {{1,2,3},{4,5,6},{7,8,9}};
     public static char[][] gameField;
+    public static int playerPoints = 0;
+    public static int AIPoints = 0;
     public static int counterMoves = 0;
     public static int optionMove = 0;
     public static final char dot_empty = '•';
@@ -35,26 +36,24 @@ public class Main {
     }
 
     public static void pleerStep(){
-        int exit = 0;
-        System.out.println("Ваш ход! Введите координаты А1 или В1 и т.д.(латинскими буквами).");
+        System.out.print("Ваш ход! Введите координаты А1 или В1 и т.д.(латинскими буквами): ");
         do {
-            exit = 0;
             String coordinates = sc.next();
             char[] wordCase = {'a', 'b', 'c'};
             for (int i = 0; i < 3; i++) {
                 if (Character.toLowerCase(coordinates.charAt(0)) == wordCase[i]) x = i;
             }
-            if (coordinates.charAt(1) == '1' || coordinates.charAt(1) == '2' || coordinates.charAt(1) == '3') {
+            if (coordinates.charAt(1) == '1' || coordinates.charAt(1) == '2' || coordinates.charAt(1) == '3')
                 y = Character.getNumericValue(coordinates.charAt(1)) - 1;
-                exit++;
-            } else System.out.println("Вводите чила 1, 2, 3.");
-            if (gameField[y][x] == dot_empty) {
-                gameField[y][x] = userChar;
-                AIField[y][x] = 0;
-                whoStep = false;
-                break;
-            } else System.out.println("Эти координаты уже заняты, введите другие.");
-        } while (exit != 2);
+            if ((x == 0 || x == 1 || x == 2) && (y == 0 || y == 1 || y == 2)) {
+                if (gameField[y][x] == dot_empty) {
+                    gameField[y][x] = userChar;
+                    whoStep = false;
+                    counterMoves++;
+                    break;
+                } else System.out.print("Эти координаты уже заняты, введите другие: ");
+            } else System.out.print("Вводите данные в формате a1, b2, c3...: ");
+        } while (true);
     }
 
     public static void AIStep(){
@@ -66,8 +65,25 @@ public class Main {
     }
 
     /*public static void doAIStep(){
-        for (int i = 0; i < SIZE; i++){
-            for
+        if (counterMoves == 1 && ) {
+            if (gameField[1][1] == dot_empty) {
+                gameField[1][1] == AIChar;
+                whoStep = true;
+            }
+        }
+        if (counterMoves == 2) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++){
+                    if (gameField[i][j] == userChar){
+                        optionMove = AIField[i][j];
+                        if (optionMove == 5){
+                            gameField[0][0] = AIChar;
+                            whoStep = true;
+                        }
+                        if (optionMove)
+                    }
+                }
+            }
         }
     }*/
 
@@ -163,7 +179,7 @@ public class Main {
         gameField = new char[SIZE][SIZE];
         for (int i = 0; i < SIZE; i++){
             for (int j = 0; j < SIZE; j++){
-                gameField[i][j] = '•';
+                gameField[i][j] = dot_empty;
             }
         }
     }
