@@ -10,8 +10,9 @@ public class Main {
         persArray[3] = new Employee("Эйс Вентура Петрушкович","PR манагер","toice@yandex.ru","03", 100000,35);
         persArray[4] = new Employee("Змей Горыныч Кощеевич","ген. дир.","to_hell@mail.ru","Apple", 1500000,307);
         for (int i = 0; i < persArray.length; i++) {
-            if (persArray[i].getAge() > 40) persArray[i].information();
+            if (persArray[i].getAge() > 40) System.out.println(persArray[i].toString());
         }
+        persArray[1].information();
     }
 
 }

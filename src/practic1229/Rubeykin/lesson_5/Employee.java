@@ -17,6 +17,18 @@ public class Employee {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "fio='" + fio + '\'' +
+                ", position='" + position + '\'' +
+                ", email='" + email + '\'' +
+                ", telephonNumber='" + telephonNumber + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                '}';
+    }
+
     public int getAge() {
         return age;
     }
