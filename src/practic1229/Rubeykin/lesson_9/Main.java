@@ -30,8 +30,6 @@ public class Main {
             if (array[a].length != 4){
                 throw new MyArraySizeException("Не подходят размеры массива!");
             }
-        }
-        for (int a = 0; a < array.length; a++){
             for (int b = 0; b <array[0].length; b++){
                 try {
                     summ += Integer.parseInt(array[a][b]);
