@@ -1,4 +1,4 @@
-package practic1229.Rubeykin;
+package practic1229;
 
 import java.util.Random;
 import java.util.Scanner;
