@@ -2,16 +2,16 @@ package practic1229.Rubeykin.lesson_11;
 
 import java.util.ArrayList;
 
-public class Box <Fruit> {
+public class Box<T extends Fruit> {
 
-    private ArrayList <Fruit> capacity;
+    public ArrayList<T> capacity;
 
-    void addFruit (Fruit obj){
+    void addFruit (T obj){
         capacity.add(obj);
     }
-
     float getWeight(){
-        return ;
+        return capacity.get(0).getWeight();
     }
+
 
 }

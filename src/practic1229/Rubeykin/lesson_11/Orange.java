@@ -1,11 +1,14 @@
 package practic1229.Rubeykin.lesson_11;
 
-public class Orange extends Fruit implements Act{
+public class Orange extends Fruit{
 
     private float weight = 1.5f;
 
+    public Orange() {
+    }
+
     @Override
-    public float getWheigt() {
+    public float getWeight() {
         return weight;
     }
 }

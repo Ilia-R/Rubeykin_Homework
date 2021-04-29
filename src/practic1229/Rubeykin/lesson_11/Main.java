@@ -17,10 +17,12 @@ public class Main {
         System.out.println(arrayList);
 
         Apple apple = new Apple();
+        Apple app1 = new Apple();
         Orange orange = new Orange();
         Box<Apple> appleBox = new Box();
-        System.out.println(apple.getWheigt());
-        appleBox.addFruit(apple);
+        System.out.println(apple.getWeight());
+     //   appleBox.addFruit(apple);
+        appleBox.addFruit(app1);
         for (int i = 0; i < 34; i++){
             appleBox.addFruit(apple);
         }
