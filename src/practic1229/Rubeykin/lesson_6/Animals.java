@@ -12,6 +12,7 @@ public abstract class  Animals {
         this.color = color;
         this.age = age;
     }
+
     public abstract String swim(int a);
     public abstract String run(int a);
 }
